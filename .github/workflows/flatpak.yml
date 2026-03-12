@@ -8,12 +8,12 @@ on:
   workflow_dispatch:
 
 env:
-  APP_ID:
-  MANIFEST_PATH:
-  FLATPAK_BUNDLE:
-  FLATPAK_BRANCH:
-  DESTINATION_GITHUB_USERNAME:
-  DESTINATION_REPOSITORY_NAME:
+  APP_ID:org.lce4jcraft.minecraft
+  MANIFEST_PATH:org.lce4jcraft.minecraft.yml
+  FLATPAK_BUNDLE:org.lce4jcraft.minecraft.flatpak
+  FLATPAK_BRANCH:stable
+  DESTINATION_GITHUB_USERNAME:valerie-tar-gz
+  DESTINATION_REPOSITORY_NAME:minecraft_lce_flatpak
   FLATPAK_BUILD_DIR: build-dir
   FLATPAK_BUILD_REPO: build-repo
 
