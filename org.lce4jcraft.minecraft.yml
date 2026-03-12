@@ -1,0 +1,43 @@
+app-id: org.lce4jcraft.minecraft
+runtime: org.freedesktop.Platform
+runtime-version: "25.08"
+sdk: org.freedesktop.Sdk
+
+finish-args:
+  - --share=network
+  - --socket=x11
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --device=dri
+
+command: minecraft
+
+modules:
+  - name: build_minecraft
+    buildsystem: meson
+    builddir: true
+    modules:
+      - shared-modules/glu/glu-9.json
+    sources:
+      - type: git
+        url: https://github.com/4jcraft/4jcraft
+        branch: dev
+
+  - name: wrapper
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 minecraft.sh /app/bin/minecraft
+    sources:
+      - type: script
+        dest-filename: minecraft.sh
+        commands:
+          - cd /app && ./Minecraft.Client "$@"
+
+  - name: install_desktop_entry
+    buildsystem: simple
+    build-commands:
+    - install -Dm644 org.lce4jcraft.minecraft.desktop /app/share/applications/${FLATPAK_ID}.desktop
+    sources:
+      - type: file
+        path: org.lce4jcraft.minecraft.desktop
