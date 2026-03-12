@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         submodules: true
 
@@ -46,7 +46,7 @@ jobs:
         flatpak-builder --default-branch=${FLATPAK_BRANCH} --download-only /dev/null ${MANIFEST_PATH}
 
     - name: Prime cache
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: |
           .flatpak-builder/ccache
@@ -70,7 +70,7 @@ jobs:
     needs: build
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Install flatpak
       run: |
@@ -102,7 +102,7 @@ jobs:
     needs: build
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Install flatpak and libcontainers tools
       run: |
