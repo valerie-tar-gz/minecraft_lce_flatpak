@@ -49,6 +49,7 @@ jobs:
       with:
         path: |
           .flatpak-builder/ccache
+        submodules: recursive
         key: flatpak-builder-${{ hashFiles('canonical-manifest.json') }}
         restore-keys: |
           flatpak-builder-
